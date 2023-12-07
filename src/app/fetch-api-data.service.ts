@@ -4,7 +4,7 @@ import { catchError, map } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 
 //API source
-const apiURL = 'https://my-movie-db-1195f41cc20f.herokuapp.com'
+const apiURL = 'https://my-movie-db-1195f41cc20f.herokuapp.com/'
 
 
 @Injectable({
@@ -27,6 +27,16 @@ export class UserRegistrationService {
         );
     }
 
+    //Login will return a token in string format
+    public userLogin(userDetails: any): Observable<string> {
+        return this.http.post(apiURL+'login', userDetails).pipe(
+            catchError(this.handleError),
+            map(this.extractResponseData),
+            map((response:any) => response.token)
+        );
+    }
+
+    //Returns all movies
     public getAllMovies(): Observable<any> {
         const token = localStorage.getItem('token');
         return this.http.get(apiURL + 'movies', {headers: new HttpHeaders(
@@ -34,8 +44,23 @@ export class UserRegistrationService {
                 Authorization: 'Bearer ' + token
             }
         )}).pipe(
-            map(this.extractResponseData),catchError(this.handleError)
+            map(this.extractResponseData),
+            catchError(this.handleError)
         );
+    }
+
+    public getOneMovie(movieID: string): Observable<any> {
+        const token = localStorage.getItem('token');
+        return this.http.get(
+            apiURL+'movies/'+movieID, 
+            {headers: new HttpHeaders(
+                {
+                    Authorization: 'Bearer ' + token
+                }
+            )}).pipe(
+                map(this.extractResponseData),
+                catchError(this.handleError)
+            )
     }
 
     //Non-typed response extraction
