@@ -7,26 +7,25 @@ import { UserRegistrationService } from '../fetch-api-data.service';
 //Notifications to the user
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-
 @Component({
-  selector: 'app-user-registration-form',
-  templateUrl: './user-registration-form.component.html',
-  styleUrl: './user-registration-form.component.scss'
+  selector: 'app-user-login-form',
+  templateUrl: './user-login-form.component.html',
+  styleUrl: './user-login-form.component.scss'
 })
-export class UserRegistrationFormComponent implements OnInit{
-    @Input() userData = { username: '', password: '', email: '', birthday: ''}
+export class UserLoginFormComponent implements OnInit{
+    @Input() userData = { username: '', password: ''}
 
     constructor(
         public userRegistrationAPI: UserRegistrationService,
-        public dialogRef: MatDialogRef<UserRegistrationFormComponent>,
+        public dialogRef: MatDialogRef<UserLoginFormComponent>,
         public snackBar: MatSnackBar
     ){}
     
     ngOnInit(): void {}
 
     //Sends form info to backend
-    registerUser():void {
-        this.userRegistrationAPI.userRegistration(this.userData).subscribe((result) => {
+    loginUser():void {
+        this.userRegistrationAPI.userLogin(this.userData).subscribe((result) => {
             this.dialogRef.close();
             this.snackBar.open(result, 'OK', {
                 duration: 2000
@@ -38,7 +37,3 @@ export class UserRegistrationFormComponent implements OnInit{
         });
     }
 }
-
-
-
-
