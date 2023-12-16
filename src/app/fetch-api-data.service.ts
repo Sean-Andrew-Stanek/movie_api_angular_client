@@ -36,10 +36,26 @@ export class UserRegistrationService {
 
     //Login will return a token in string format
     public userLogin(userDetails: any): Observable<string> {
-        return this.http.post(apiURL+'login', userDetails).pipe(
+        return this.http.post(apiURL+'login', userDetails, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        }).pipe(
             catchError(this.handleError),
-            map(this.extractResponseData),
-            map((response:any) => response.token)
+            map((resData: any) => {
+                if(resData.user) {
+                    //Save user / token to localStorage
+                    localStorage.setItem('user', JSON.stringify(resData.user));
+                    localStorage.setItem('token', resData.token);
+                    //log to console
+                    console.log(`Successfully logged in as ${resData.user.username}`);
+                    console.log(`Token: ${resData.token}`);
+                    
+                    return JSON.stringify(resData.user);
+                } else {
+                    throw new Error('No such user');
+                }
+            })
         );
     }
 
