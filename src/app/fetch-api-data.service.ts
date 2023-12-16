@@ -100,7 +100,9 @@ export class UserRegistrationService {
 }
 
 
-
+@Injectable({
+    providedIn: 'root'
+  })
 export class FetchApiDataService {
 
     constructor(private http: HttpClient) {}
@@ -138,7 +140,7 @@ export class FetchApiDataService {
     //Put an update for a new favorite movie for a user
     public addFavoriteMovie(userID: string, movieID: string): Observable<any> {
         return this.http.post(
-            apiURL+'users/'+userID+'/movies/'+movieID, 
+            apiURL+'users/'+userID+'/movies/'+movieID, {},
             {headers: this.tokenHeader()}
         ).pipe(
             map(this.extractResponseData),
