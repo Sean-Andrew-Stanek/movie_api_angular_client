@@ -1,0 +1,15 @@
+.card-container {
+    display: flex;
+    background-color: black;
+    color: white;
+}
+
+.movie-card {
+    flex: 1 1 auto;
+    margin: 10px 10px;
+    background: rgba(50,75,125,.5);
+}
+
+.movie-card img{
+    margin: auto 5px;
+}

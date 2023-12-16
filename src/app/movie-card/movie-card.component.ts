@@ -10,17 +10,15 @@ export class MovieCardComponent {
 
     movies: any[] = [];
 
-    constructor(public fetchApiData: FetchApiDataService) { console.log('fetch included') }
+    constructor(public fetchApiData: FetchApiDataService) { }
 
     ngOnInit(): void {
-        console.log('hi');
         this.getMovies();
     }
 
     getMovies(): void {
         this.fetchApiData.getAllMovies().subscribe((resp: any) => {
             this.movies = resp;
-            console.log(this.movies);
             return this.movies;
           });
         }
