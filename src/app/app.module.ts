@@ -22,6 +22,7 @@ import { UserLoginFormComponent } from './user-login-form/user-login-form.compon
 import { MovieCardComponent } from './movie-card/movie-card.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { MainViewComponent } from './main-view/main-view.component';
 
 const appRoutes: Routes = [
     { path: 'welcome', component: WelcomePageComponent},
@@ -36,7 +37,8 @@ const appRoutes: Routes = [
     UserLoginFormComponent,
     MovieCardComponent,
     WelcomePageComponent,
-    NavBarComponent
+    NavBarComponent,
+    MainViewComponent
   ],
   imports: [
     BrowserModule,
