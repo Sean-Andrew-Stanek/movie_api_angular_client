@@ -1,1 +1,55 @@
-<p>main-view works!</p>
+<div class = "card-container">
+    <mat-card *ngFor="let movie of movies; let i=index" class="movie-card">
+        <mat-card-header style="margin: 0 auto">
+            <mat-card-title
+                style = "
+                    font-size: 1.5em;
+                    white-space: nowrap;
+                    overflow: hidden;
+                "        
+            >
+                {{movie.title}}
+            </mat-card-title>
+            <mat-card-subtitle
+                style="color: rgba(255,255,255,0.5);"
+            >
+                Directed by: {{movie.director.name}}
+            </mat-card-subtitle>
+        </mat-card-header>
+        <img 
+            class="movie-image"
+            src={{movie.image}}
+            (click)="openMovieCardDialog(movie)"
+        />
+        
+        <mat-card-actions
+            class="button-bar"
+        >
+            <button
+                mat-raised-button
+                color="primary"
+                style="margin: auto 2px"
+            >
+                Genre
+            </button>
+            <button
+                mat-raised-button
+                color="primary"
+                style="margin: auto 2px"
+            >
+                Director
+            </button>
+            <button
+                mat-raised-button
+                color="primary"
+                style="margin: auto 2px"
+                (click)="openMovieCardDialog(movie)"
+            >
+                Synopsis
+            </button>
+            <mat-icon>
+                favorite_border
+            </mat-icon>
+        </mat-card-actions>
+    </mat-card>
+</div>

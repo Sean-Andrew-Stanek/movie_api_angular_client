@@ -26,7 +26,7 @@ import { MainViewComponent } from './main-view/main-view.component';
 
 const appRoutes: Routes = [
     { path: 'welcome', component: WelcomePageComponent},
-    { path: 'movies', component: MovieCardComponent},
+    { path: 'movies', component: MainViewComponent},
     { path: '', redirectTo: 'welcome', pathMatch: 'prefix'},
 ];
 

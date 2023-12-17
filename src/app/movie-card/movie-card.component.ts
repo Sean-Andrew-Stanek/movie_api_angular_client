@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FetchApiDataService } from '../fetch-api-data.service'
-import { DataService } from '../data.service';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-movie-card',
@@ -9,5 +8,8 @@ import { DataService } from '../data.service';
 })
 export class MovieCardComponent {
 
+    constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
+
+    movie = this.data.movie;
 
 }

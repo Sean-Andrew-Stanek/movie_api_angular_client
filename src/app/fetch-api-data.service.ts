@@ -11,8 +11,6 @@ const apiURL = 'https://my-movie-db-1195f41cc20f.herokuapp.com/'
 @Injectable({
   providedIn: 'root'
 })
-
-
 export class UserRegistrationService {
 
     //Inject the HttpClient Moducle into the constructor params
