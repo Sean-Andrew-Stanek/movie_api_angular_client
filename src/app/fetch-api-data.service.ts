@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
-import { Observable, throwError } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
+
+import mockdata from './mockdata';
 
 //API source
 const apiURL = 'https://my-movie-db-1195f41cc20f.herokuapp.com/'
@@ -105,6 +107,7 @@ export class UserRegistrationService {
   })
 export class FetchApiDataService {
 
+    public isTesting = true;
     constructor(private http: HttpClient) {}
 
     private tokenHeader(): HttpHeaders {
@@ -151,13 +154,18 @@ export class FetchApiDataService {
   
     //Returns all movies
     public getAllMovies(): Observable<any> {
-        return this.http.get(
-            apiURL + 'movies', 
-            {headers: this.tokenHeader() }
-        ).pipe(
-            map(this.extractResponseData),
-            catchError(this.handleError)
-        );
+        if(this.isTesting){
+            console.log('Loading Test Data');
+            return of(mockdata);
+        }else{
+            return this.http.get(
+                apiURL + 'movies', 
+                {headers: this.tokenHeader() }
+            ).pipe(
+                map(this.extractResponseData),
+                catchError(this.handleError)
+            );
+        }
     }
 
     //Returns a single movie
