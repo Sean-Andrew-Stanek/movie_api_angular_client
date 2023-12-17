@@ -4,6 +4,7 @@ import { DataService } from '../data.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MovieCardComponent } from '../movie-card/movie-card.component';
 import { DirectorCardComponent } from '../director-card/director-card.component';
+import { GenreCardComponent } from '../genre-card/genre-card.component';
 
 @Component({
   selector: 'app-main-view',
@@ -52,6 +53,14 @@ export class MainViewComponent {
             width: "80%",
             height: "80%",
             data: {movie}
+        });
+    }
+
+    openGenreCardDialog(genre: any): void {
+        this.dialog.open(GenreCardComponent, {
+            width: "80%",
+            height: "80%",
+            data: {genre}
         });
     }
 }

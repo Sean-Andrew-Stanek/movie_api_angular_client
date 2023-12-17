@@ -2,39 +2,27 @@
     <mat-card-header style = "justify-content: center; align-items: center; text-align: center;">
         <mat-card-title >
             <h1>
-                {{director.name}}
+                {{genre.name}}
             </h1>            
         </mat-card-title>
     </mat-card-header>
 
     <mat-card-content class = "content-row">
         <div class="image-container">
-            <img [src]= "director.image" [alt] = "'Image of ' + director.name">
+            <img [src]= "genre.image" [alt] = "'Image of ' + genre.name">
         </div>
         <div class="info-container">
             <h2>
                 Name: 
             </h2>
             <p>
-                {{director.name}}
+                {{genre.name}}
             </p>
             <h2>
-                Director: 
+                Description: 
             </h2>
             <p>
-                {{director.bio}}
-            </p>
-            <h2>
-                Born:
-            </h2>
-            <p>
-                {{director.birth}}
-            </p>
-            <h2>
-                Death:
-            </h2>
-            <p>
-                {{director.death}}
+                {{genre.description}}
             </p>
         </div>
     </mat-card-content>

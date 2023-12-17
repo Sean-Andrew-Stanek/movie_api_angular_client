@@ -15,6 +15,8 @@ import { FormsModule } from '@angular/forms';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
+import { DatePipe } from '@angular/common';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserRegistrationFormComponent } from './user-registration-form/user-registration-form.component';
@@ -24,6 +26,7 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { MainViewComponent } from './main-view/main-view.component';
 import { DirectorCardComponent } from './director-card/director-card.component';
+import { GenreCardComponent } from './genre-card/genre-card.component';
 
 const appRoutes: Routes = [
     { path: 'welcome', component: WelcomePageComponent},
@@ -40,7 +43,8 @@ const appRoutes: Routes = [
     WelcomePageComponent,
     NavBarComponent,
     MainViewComponent,
-    DirectorCardComponent
+    DirectorCardComponent,
+    GenreCardComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +61,7 @@ const appRoutes: Routes = [
     MatIconModule,
     RouterModule.forRoot(appRoutes),
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

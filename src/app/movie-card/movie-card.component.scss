@@ -10,6 +10,8 @@
     display: flex;
     margin-bottom: 25px;
     background-image: linear-gradient(to right, rgba(0,0,0,.1), rgba(0,0,0,1));
+    justify-items: center;
+    align-content: center;
     
 }
 
@@ -27,6 +29,7 @@
     padding: 10px;
     background: rgba(0,0,0,.5);
     border: 5px white solid;
+    align-self: center;
 }
 
 .image-container img {
