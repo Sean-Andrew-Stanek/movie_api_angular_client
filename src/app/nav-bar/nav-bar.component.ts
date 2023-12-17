@@ -8,20 +8,20 @@ import { Router } from '@angular/router';
 })
 export class NavBarComponent {
 
-  constructor(
-    private router: Router,
-  ){}
+    constructor(
+        private router: Router,
+    ){}
 
-  navProfile():void {
+    navProfile():void {
 
-  }
+    }
 
-  navSignout():void {
-    this.router.navigate(['welcome']);
-  }
+    navSignout():void {
+        this.router.navigate(['welcome']);
+    }
 
-  navHome():void {
-    this.router.navigate(['movies']);
-  }
+    navHome():void {
+        this.router.navigate(['movies']);
+    }
 
 }

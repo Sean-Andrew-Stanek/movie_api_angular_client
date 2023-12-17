@@ -23,6 +23,7 @@ import { MovieCardComponent } from './movie-card/movie-card.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { MainViewComponent } from './main-view/main-view.component';
+import { DirectorCardComponent } from './director-card/director-card.component';
 
 const appRoutes: Routes = [
     { path: 'welcome', component: WelcomePageComponent},
@@ -38,7 +39,8 @@ const appRoutes: Routes = [
     MovieCardComponent,
     WelcomePageComponent,
     NavBarComponent,
-    MainViewComponent
+    MainViewComponent,
+    DirectorCardComponent
   ],
   imports: [
     BrowserModule,

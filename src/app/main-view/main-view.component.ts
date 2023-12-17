@@ -3,6 +3,7 @@ import { FetchApiDataService } from '../fetch-api-data.service'
 import { DataService } from '../data.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MovieCardComponent } from '../movie-card/movie-card.component';
+import { DirectorCardComponent } from '../director-card/director-card.component';
 
 @Component({
   selector: 'app-main-view',
@@ -36,6 +37,14 @@ export class MainViewComponent {
                 return this.movies;
                 });
         }
+    }
+
+    openDirectorCardDialog(director: any): void {
+        this.dialog.open(DirectorCardComponent, {
+            width: "80%",
+            height: "80%",
+            data: {director}
+        })
     }
 
     openMovieCardDialog(movie: any): void {
