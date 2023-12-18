@@ -1,0 +1,37 @@
+<mat-card class = "card-container">
+    <mat-card-header style = "justify-content: center; align-items: center; text-align: center;">
+        <mat-card-title >
+            <h1>
+                {{genre.name}}
+            </h1>            
+        </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content class = "content-row">
+        <div class="image-container">
+            <img [src]= "genre.image" [alt] = "'Image of ' + genre.name">
+        </div>
+        <div class="info-container">
+            <h2>
+                Name: 
+            </h2>
+            <p>
+                {{genre.name}}
+            </p>
+            <h2>
+                Description: 
+            </h2>
+            <p>
+                {{genre.description}}
+            </p>
+        </div>
+    </mat-card-content>
+
+    <mat-card-content>
+        <h2>
+            Similar Movies:
+        </h2>
+        <!-- Put recommendations here -->    
+    </mat-card-content>
+
+</mat-card>

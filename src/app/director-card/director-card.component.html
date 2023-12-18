@@ -1,0 +1,49 @@
+<mat-card class = "card-container">
+    <mat-card-header style = "justify-content: center; align-items: center; text-align: center;">
+        <mat-card-title >
+            <h1>
+                {{director.name}}
+            </h1>            
+        </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content class = "content-row">
+        <div class="image-container">
+            <img [src]= "director.image" [alt] = "'Image of ' + director.name">
+        </div>
+        <div class="info-container">
+            <h2>
+                Name: 
+            </h2>
+            <p>
+                {{director.name}}
+            </p>
+            <h2>
+                Director: 
+            </h2>
+            <p>
+                {{director.bio}}
+            </p>
+            <h2>
+                Born:
+            </h2>
+            <p>
+                {{director.birth}}
+            </p>
+            <h2>
+                Death:
+            </h2>
+            <p>
+                {{director.death}}
+            </p>
+        </div>
+    </mat-card-content>
+
+    <mat-card-content>
+        <h2>
+            Similar Movies:
+        </h2>
+        <!-- Put recommendations here -->    
+    </mat-card-content>
+
+</mat-card>
