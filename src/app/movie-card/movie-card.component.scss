@@ -4,6 +4,7 @@
     height: 100%;
     border: 10px black solid;
     border-radius: 10px;
+    flex: 1 1 auto;
 }
 
 .content-row {
@@ -39,4 +40,48 @@
 
 h1 {
     font-size: 2rem;
+}
+
+.similar-card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: black;
+    color: white;
+    height: 250px;
+}
+
+.similar-card {
+    display: flex;
+    margin: auto 5px;
+    background: rgba(50,75,125,.5);
+    border: 5px rgba(0,0,0,.5) solid;
+    height: 220px;
+    width: 125px;
+    overflow: hidden;
+    font-size: 1rem;
+}
+
+.similar-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.similar-card img {
+    display: block;
+    max-height: 90%;
+    max-width: 100px;
+    width: auto;
+    height: auto;
+    border: rgba(0,0,0,.8) 5px solid;
+    cursor: pointer;
+    height: auto;
+    transform: scale(1.0);
+    transition: transform 0.5s ease-in-out, border 0.5s ease-in-out;
+}
+
+.similar-card img:hover {
+    transform: scale(1.02);
+    border: rgba(0,0,0,.8) 5px solid;
 }
