@@ -4,6 +4,7 @@ import { catchError, map } from 'rxjs/operators';
 import { Observable, of, throwError } from 'rxjs';
 
 import mockdata from './mockdata';
+import { DataService } from './data.service';
 
 //API source
 const apiURL = 'https://my-movie-db-1195f41cc20f.herokuapp.com/'
@@ -15,7 +16,10 @@ export class UserRegistrationService {
 
     //Inject the HttpClient Moducle into the constructor params
     //It will be accessable to the whole class
-    constructor(private http: HttpClient) {}
+    constructor(
+        private http: HttpClient,
+        private dataService: DataService,
+    ){}
 
     private tokenHeader(): HttpHeaders {
         const token = localStorage.getItem('token');
@@ -47,9 +51,9 @@ export class UserRegistrationService {
                     //Save user / token to localStorage
                     localStorage.setItem('user', JSON.stringify(resData.user));
                     localStorage.setItem('token', resData.token);
+                    this.dataService.setUser(resData.user);
                     //log to console
                     console.log(`Successfully logged in as ${resData.user.username}`);
-                    console.log(`Token: ${resData.token}`);
                     
                     return JSON.stringify(resData.user);
                 } else {

@@ -11,7 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
@@ -27,6 +27,8 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { MainViewComponent } from './main-view/main-view.component';
 import { DirectorCardComponent } from './director-card/director-card.component';
 import { GenreCardComponent } from './genre-card/genre-card.component';
+import { ProfileViewComponent } from './profile-view/profile-view.component';
+import {MatMenuModule} from '@angular/material/menu'
 
 const appRoutes: Routes = [
     { path: 'welcome', component: WelcomePageComponent},
@@ -44,7 +46,8 @@ const appRoutes: Routes = [
     NavBarComponent,
     MainViewComponent,
     DirectorCardComponent,
-    GenreCardComponent
+    GenreCardComponent,
+    ProfileViewComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +63,8 @@ const appRoutes: Routes = [
     MatSnackBarModule,
     MatIconModule,
     RouterModule.forRoot(appRoutes),
+    MatMenuModule,
+    ReactiveFormsModule,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

@@ -32,7 +32,6 @@ export class MainViewComponent {
             this.movies = localMovies;
         } else {
             this.fetchApiData.getAllMovies().subscribe((resp: any) => {
-                console.log(resp)
                 this.movies = resp;
                 this.dataService.setMovies(resp);
                 return this.movies;
