@@ -22,6 +22,7 @@ export class MainViewComponent {
     ) { }
 
     ngOnInit(): void {
+        this.login()
         this.getMovies();
     }
 
@@ -34,6 +35,12 @@ export class MainViewComponent {
         }else{
             this.dataService.addFavoriteMovie(movie._id);
         }
+    }
+
+    //Attempts to login
+    //TODO:  Send to login if fail
+    login(){
+        this.dataService.signin();
     }
 
     isFavorite(movie: any): boolean {

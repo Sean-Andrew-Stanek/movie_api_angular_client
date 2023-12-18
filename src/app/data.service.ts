@@ -22,6 +22,11 @@ export class DataService {
         this.movies = [];
     }
    
+    signin(): void {
+        const userString = localStorage.getItem('user');
+        if(userString)
+            this.user = JSON.parse(userString);
+    }
 
     signout(): void {
         this.user = {};
@@ -93,7 +98,7 @@ export class DataService {
             case 'genre':
                 return movies.filter(movie => movie.genre.name == value);
             case 'favoriteMovies':
-                //TODO
+                return movies.filter(movie => this.user.favoriteMovies.indexOf(movie._id)>=0);
             case 'navSearch':
                 return this.searchAllObjects(movies, value);
         }

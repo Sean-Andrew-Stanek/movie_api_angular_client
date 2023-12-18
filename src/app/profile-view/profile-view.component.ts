@@ -8,6 +8,8 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 //Imports the API calls
 import { UserRegistrationService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog, MatDialogRef  } from '@angular/material/dialog';
+import { MovieCardComponent } from '../movie-card/movie-card.component';
 
 @Component({
   selector: 'app-profile-view',
@@ -40,6 +42,8 @@ export class ProfileViewComponent {
         public fetchApiData: FetchApiDataService,
         private datePipe: DatePipe,
         public snackBar: MatSnackBar,
+        private dialog: MatDialog,
+        private dialogRef: MatDialogRef<MovieCardComponent>,
     ){
         this.usernameForm = this.fb.group({
             newUsername: ['', [Validators.required]]
@@ -56,12 +60,14 @@ export class ProfileViewComponent {
         this.emailForm = this.fb.group({
             newEmail: ['', [Validators.required, Validators.email]]
         });
+
+        this.favoriteMovies = dataService.filteredMovies('favoriteMovies', '').slice(0,5);
+        //console.log(this.favoriteMovies[0]);
     }
 
     //Get the user from the data service
     ngOnInit(): void {
         this.getUser();
-        console.log(this.user._id);
     }
 
     getUser(): void {
@@ -74,12 +80,20 @@ export class ProfileViewComponent {
             //I'm not even sure if it can get here with an empty object
             console.log('No current user: please sign in');
         }
-
-        //Makes favorite movies a bit easier to get to and cleans up the code
-        this.favoriteMovies = this.user.favoriteMovies;
+        
         //changes the birthday into a readable form
         this.user.birthday = this.datePipe.transform(this.user.birthday, 'MM/dd/yyyy')
 
+    }
+
+    openMovieCardDialog(movie: any): void {
+        console.log(movie);
+        this.dialog.open(MovieCardComponent, {
+            width: "80%",
+            height: "80%",
+            data: {movie}
+        });
+        this.dialogRef.close();
     }
 
     //Generic opener
@@ -156,9 +170,5 @@ export class ProfileViewComponent {
                 this.passwordMenuTrigger.closeMenu();
         }
     }
-
-
-
-
 
 }
