@@ -14,6 +14,8 @@ export class DataService {
 
     private movies: any[] = [];
     private user: any = {};
+    private currentMovies: any[] = [];
+
 
     constructor(
         private fetchApiDataService: FetchApiDataService,
@@ -35,10 +37,15 @@ export class DataService {
 
     setMovies(data: any[]): void {
         this.movies = data
+        this.currentMovies = data;
     }
 
     getMovies(): any[] {
         return this.movies;
+    }
+
+    getCurrentMovies(): any[] {
+        return this.currentMovies;
     }
 
     setUser(data: any): void {
@@ -100,6 +107,10 @@ export class DataService {
             case 'favoriteMovies':
                 return movies.filter(movie => this.user.favoriteMovies.indexOf(movie._id)>=0);
             case 'navSearch':
+                console.log(value);
+                this.currentMovies = this.searchAllObjects(movies, value);
+                console.log(this.currentMovies);
+                //This return doesn't matter.  This acts as a call to the main view
                 return this.searchAllObjects(movies, value);
         }
         return [];

@@ -13,7 +13,8 @@ import { GenreCardComponent } from '../genre-card/genre-card.component';
 })
 export class MainViewComponent {
 
-    movies: any[] = [];
+    movies: any[] = []
+    currentMovies: any[] = [];
 
     constructor(
         private dataService: DataService,
@@ -24,6 +25,11 @@ export class MainViewComponent {
     ngOnInit(): void {
         this.login()
         this.getMovies();
+        this.currentMoviesListener();
+    }
+
+    currentMoviesListener() {
+        this.currentMovies = this.dataService.getCurrentMovies();
     }
 
     toggleFavorite(movie: any) {

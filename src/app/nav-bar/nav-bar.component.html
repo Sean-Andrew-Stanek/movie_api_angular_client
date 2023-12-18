@@ -5,6 +5,12 @@
         </div>
     </div>
     <div class = "navbar-right">
+        <input
+            [(ngModel)]="searchText"
+            (ngModelChange)="sendMessage()"
+            placeholder="Search..."
+            style="margin-right: 10px;"
+        />
         <button
             mat-raised-button
             class="navButton"
