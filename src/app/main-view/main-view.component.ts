@@ -25,6 +25,21 @@ export class MainViewComponent {
         this.getMovies();
     }
 
+    toggleFavorite(movie: any) {
+        const index = this.dataService.getFavoriteMovies().indexOf(movie._id);
+        //If it is favorited, removed
+        if(index !== -1){
+            this.dataService.removeFavoriteMovie(movie._id);
+        // otherwise, add
+        }else{
+            this.dataService.addFavoriteMovie(movie._id);
+        }
+    }
+
+    isFavorite(movie: any): boolean {
+        return this.dataService.getFavoriteMovies().indexOf(movie._id) >=0;
+    }
+
     getMovies(): void {
         const localMovies = this.dataService.getMovies();
 

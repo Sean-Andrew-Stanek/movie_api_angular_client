@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
+import { FetchApiDataService } from './fetch-api-data.service';
 
 //LATER - Add ng generate interface movie / user
+//IMPORTANT:  THIS IS INSTANCE ONLY.  ALL LOCALSTORAGE IS IN THE API 
+//EXCEPTION:  SIGNOUT
+//EXCEPTION:  API is referenced here for favorited movie for UX reasons
 
 
 @Injectable({
@@ -10,6 +14,14 @@ export class DataService {
 
     private movies: any[] = [];
     private user: any = {};
+
+    constructor(
+        private fetchApiDataService: FetchApiDataService,
+    ){
+        this.user = {};
+        this.movies = [];
+    }
+   
 
     signout(): void {
         this.user = {};
@@ -36,16 +48,39 @@ export class DataService {
         return this.user.favoriteMovies;
     }
 
-    addFavoriteMovie(data: number):void {
-        //ADD TO USER
-        //ADD TO SERVER
-        //UPDATE USER
+    //Add by _id 
+    addFavoriteMovie(id: string):void {
+        //REMOVE FROM USER
+        this.user.favoriteMovies.push(id);
+        
+        //REMOVE FROM SERVER
+        this.fetchApiDataService.addFavoriteMovie(this.user._id, id).subscribe(response=>
+            {
+                console.log('Added Favorite');
+                //UPDATE USER
+                this.user = response;
+                localStorage.setItem('user', response);
+            }, error => {
+                console.error('Error removing favorite: ', error);
+            })
     }
 
-    removeFavoriteMovie(data: number):void {
+    //Remove by _id
+    removeFavoriteMovie(id: string):void {
         //REMOVE FROM USER
+        const index = this.user.favoriteMovies.indexOf(id);
+        this.user.favoriteMovies.splice(index, 1);
+        
         //REMOVE FROM SERVER
-        //UPDATE USER
+        this.fetchApiDataService.deleteFavoriteMovie(this.user._id, id).subscribe(response=>
+            {
+                console.log('Deleted Favorite');
+                //UPDATE USER
+                this.user = response;
+                localStorage.setItem('user', response);
+            }, error => {
+                console.error('Error removing favorite: ', error);
+            })
     }
 
     filteredMovies(field: string, value: string): any[] {
@@ -81,8 +116,4 @@ export class DataService {
         })
     }
 
-    constructor() { 
-        this.user = {};
-        this.movies = [];
-    }
 }
