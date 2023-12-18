@@ -11,6 +11,11 @@ export class DataService {
     private movies: any[] = [];
     private user: any = {};
 
+    signout(): void {
+        this.user = {};
+        localStorage.clear();
+    }
+
     setMovies(data: any[]): void {
         this.movies = data
     }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ProfileViewComponent } from '../profile-view/profile-view.component';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -13,6 +14,7 @@ export class NavBarComponent {
     constructor(
         private router: Router,
         private dialog: MatDialog,
+        private dataService: DataService
     ){}
 
     navProfile():void {
@@ -23,6 +25,7 @@ export class NavBarComponent {
     }
 
     navSignout():void {
+        this.dataService.signout();
         this.router.navigate(['welcome']);
     }
 

@@ -29,14 +29,15 @@ export class UserLoginFormComponent implements OnInit{
     loginUser():void {
         this.userRegistrationAPI.userLogin(this.userData).subscribe((result) => {
             this.dialogRef.close();
-            this.snackBar.open(result, 'OK', {
+            this.snackBar.open('Logged In!  Welcome!', 'OK', {
                 duration: 2000
             });
             this.router.navigate(['movies']);
-        }, (result) => {
-            this.snackBar.open(result, 'OK', {
+        }, (error) => {
+            this.snackBar.open('Login Not Successful', 'OK', {
                 duration: 2000
             });
+            console.error('Login failed: ', error);
         });
     }
 }

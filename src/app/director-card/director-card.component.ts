@@ -29,10 +29,10 @@ export class DirectorCardComponent {
 
     ngOnInit(): void {
         if(this.director.birth)
-            this.director.birth = this.datePipe.transform(this.director.birth, 'dd/MM/yyyy')
+            this.director.birth = this.datePipe.transform(this.director.birth, 'MM/dd/yyyy')
 
         if(this.director.death)
-            this.director.death = this.datePipe.transform(this.director.death, 'dd/MM/yyyy')
+            this.director.death = this.datePipe.transform(this.director.death, 'MM/dd/yyyy')
 
         //Generic image if none is provided
         if(!this.director.image)
