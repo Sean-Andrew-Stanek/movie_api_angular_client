@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MovieCardComponent } from '../movie-card/movie-card.component';
 import { DirectorCardComponent } from '../director-card/director-card.component';
 import { GenreCardComponent } from '../genre-card/genre-card.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-main-view',
@@ -13,16 +14,52 @@ import { GenreCardComponent } from '../genre-card/genre-card.component';
 })
 export class MainViewComponent {
 
-    movies: any[] = [];
+    movies: any[] = []
+    currentMovies: any[] = [];
+    currentMoviesSubscription: Subscription = new Subscription();
 
     constructor(
-        private dataService: DataService,
+        public dataService: DataService,
         public fetchApiData: FetchApiDataService,
         private dialog: MatDialog,
     ) { }
 
     ngOnInit(): void {
+        this.login()
         this.getMovies();
+        this.currentMoviesSubscription = this.dataService.currentMovies$.subscribe(
+            currentMovies=> this.currentMovies = currentMovies
+        );
+    }
+
+    ngOnDestroy(): void {
+        this.currentMoviesSubscription.unsubscribe();
+    }
+
+/*     currentMoviesListener() {
+        this.currentMovies = this.dataService.currentMovies;
+    } */
+
+    toggleFavorite(movie: any) {
+        const index = this.dataService.getFavoriteMovies().indexOf(movie._id);
+        //If it is favorited, removed
+        if(index !== -1){
+            this.dataService.removeFavoriteMovie(movie._id);
+        // otherwise, add
+        }else{
+            this.dataService.addFavoriteMovie(movie._id);
+        }
+    }
+
+    //Attempts to login
+    //TODO:  Send to login if fail
+    login(){
+        this.dataService.signin();
+    }
+
+
+    isFavorite(movie: any): boolean {
+        return this.dataService.getFavoriteMovies().indexOf(movie._id) >=0;
     }
 
     getMovies(): void {
@@ -32,7 +69,6 @@ export class MainViewComponent {
             this.movies = localMovies;
         } else {
             this.fetchApiData.getAllMovies().subscribe((resp: any) => {
-                console.log(resp)
                 this.movies = resp;
                 this.dataService.setMovies(resp);
                 return this.movies;

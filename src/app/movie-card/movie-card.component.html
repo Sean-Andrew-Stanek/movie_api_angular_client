@@ -37,7 +37,29 @@
         <h2>
             Similar Movies:
         </h2>
-        <!-- Put recommendations here -->    
-    </mat-card-content>
+        <div class = "similar-card-container">
+            <mat-card *ngFor="let movie of similarMovies; let i=index" class="similar-card">
+                <div class="similar-image-container">
+                    <img 
+                        class="similar-movie-image"
+                        src={{movie.image}}
+                        (click)="openMovieCardDialog(movie)"
+                    />
+                </div> 
+                <mat-card-header style="margin: 0 auto">
+                    <mat-card-title
+                        style = "
+                            font-size: 1em;
+                            white-space: nowrap;
+                            overflow: hidden;
+                        "        
+                    >
+                        {{movie.title}}
+                    </mat-card-title>
+                </mat-card-header>
+            </mat-card>
+        </div> 
+    </mat-card-content> 
+
 
 </mat-card>

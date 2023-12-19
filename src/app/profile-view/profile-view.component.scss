@@ -1,0 +1,14 @@
+.profile-button { 
+    margin: 5px;
+    font-size: 2rem;
+    color: rgba(255,255,255,.8);
+    border-radius: 10px;
+    background-color: rgba(0,0,0,.8);
+    transition: color ease-in .2s, background-color ease-in .2s;
+}
+
+.profile-button:hover { 
+    
+    color: rgba(0,0,0,.8);
+    background-color: rgba(255,255,255,.8);
+}

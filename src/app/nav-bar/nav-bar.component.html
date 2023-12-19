@@ -1,16 +1,22 @@
 <div class = "navbar">
-    <div class = "navbar-left">
-        <div>
-            Angular Movie Client    
-        </div>
+    <div class = "navbar-left" style="display: flex; align-items:center; font-size:xx-large; justify-content: center; ">
+        Angular Movie Client    
     </div>
     <div class = "navbar-right">
+        <input
+            [(ngModel)]="searchText"
+            (ngModelChange)="sendMessage()"
+            placeholder="Search..."
+            style="margin-right: 10px; height: 50%; background-color: rgba(50,75,125,.5); color: white;"
+            *ngIf="hasUser()"
+        />
         <button
             mat-raised-button
             class="navButton"
             (click)="navHome()"
             style="margin-right: 10px;"
             color="primary"
+            *ngIf="hasUser()"
         >
             Home
         </button>
@@ -20,6 +26,7 @@
             (click)="navProfile()"
             style="margin-right: 10px;"
             color="primary"
+            *ngIf="hasUser()"
         >
             Profile
         </button>
@@ -29,6 +36,7 @@
             (click)="navSignout()"
             style="margin-right: 10px;"
             color="primary"
+            
         >
             Signout
         </button>

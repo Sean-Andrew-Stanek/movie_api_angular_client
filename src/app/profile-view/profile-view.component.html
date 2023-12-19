@@ -1,0 +1,162 @@
+<mat-card class = "card-container">
+    <mat-card-header style = "justify-content: center; align-items: center; text-align: center;background-image: linear-gradient(to right, rgba(0,0,0,.1), rgba(0,0,0,1));">
+        <mat-card-title
+            style = "font-size: 3rem; padding: 10px"
+        >
+            {{user.username}}
+        </mat-card-title>
+    </mat-card-header>
+    
+    <mat-card-content>
+        <button
+            mat-button
+            [matMenuTriggerFor]="usernameMenu"
+            (click)="openMenu(usernameMenuTrigger)"
+            #usernameMenuTrigger="matMenuTrigger"
+            class="profile-button"
+        >
+            Username: {{user.username}}
+        </button>
+        <br>
+        <button
+            mat-button
+            [matMenuTriggerFor]="passwordMenu"
+            (click)="openMenu(passwordMenuTrigger)"
+            #passwordMenuTrigger="matMenuTrigger"
+            class="profile-button"
+        >
+            Password: ********
+        </button>
+        <br>
+        <button
+            mat-button
+            [matMenuTriggerFor]="emailMenu"
+            (click)="openMenu(emailMenuTrigger)"
+            #emailMenuTrigger="matMenuTrigger"
+            class="profile-button"
+        >
+            Email: {{user.email}}
+        </button>
+        <br>
+        <button
+            mat-button
+            [matMenuTriggerFor]="birthdayMenu"
+            (click)="openMenu(birthdayMenuTrigger)"
+            #birthdayMenuTrigger="matMenuTrigger"
+            class="profile-button"
+        >
+            Birthday: {{user.birthday}}
+        </button>
+        <br>
+        
+        <mat-menu #usernameMenu="matMenu">
+            <form [formGroup]="usernameForm" (ngSubmit)="onUsernameSubmit()">
+                <mat-form-field>
+                    <input
+                        matInput
+                        placeholder="{{user.username}}"
+                        formControlName="newUsername"
+                        (click)="$event.stopPropagation()"
+                    />
+                </mat-form-field>
+                <button
+                    mat-button
+                    type="submit"
+                >
+                    Change Username
+                </button>
+            </form>
+        </mat-menu>
+
+        <mat-menu #passwordMenu="matMenu">
+            <form [formGroup]="passwordForm" (ngSubmit)="onPasswordSubmit()">
+                <mat-form-field>
+                    <input
+                        matInput
+                        placeholder="New Password"
+                        formControlName="newPassword"
+                        (click)="$event.stopPropagation()"
+                    />
+                </mat-form-field>
+                <button
+                    mat-button
+                    type="submit"
+                >
+                    Change Password
+                </button>
+            </form>
+        </mat-menu>
+
+        <mat-menu #emailMenu="matMenu">
+            <form [formGroup]="emailForm" (ngSubmit)="onEmailSubmit()">
+                <mat-form-field>
+                    <input
+                        matInput
+                        placeholder="New Email"
+                        formControlName="newEmail"
+                        (click)="$event.stopPropagation()"
+                    />
+                </mat-form-field>
+                <button
+                    mat-button
+                    type="submit"
+                >
+                    Change Email
+                </button>
+            </form>
+        </mat-menu>
+
+        <mat-menu #birthdayMenu="matMenu">
+            <form [formGroup]="birthdayForm" (ngSubmit)="onBirthdaySubmit()">
+                <mat-form-field>
+                    <input
+                        matInput
+                        [matDatepicker]="picker"
+                        placeholder="Select Birthday"
+                        formControlName="newBirthday"
+                        (click)="$event.stopPropagation()"
+                    />
+                    <mat-datepicker-toggle
+                        matSuffix [for]="picker">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker
+                        #picker
+                    >
+                    </mat-datepicker>
+                </mat-form-field>
+                <button
+                    mat-button
+                    type="submit"
+                >
+                    Change Birthday
+                </button>
+            </form>
+        </mat-menu>
+   
+    </mat-card-content>
+
+    <mat-card-footer class = "similar-card-container">
+        <mat-card *ngFor="let movie of favoriteMovies; let i=index" class="similar-card">
+            <div class="similar-image-container">
+                <img 
+                    class="similar-movie-image"
+                    src={{movie.image}}
+                    (click)="openMovieCardDialog(movie)"
+                />
+            </div> 
+            <mat-card-header style="margin: 0 auto">
+                <mat-card-title
+                    style = "
+                        font-size: 1em;
+                        white-space: nowrap;
+                        overflow: hidden;
+                    "        
+                >
+                    {{movie.title}}
+                </mat-card-title>
+            </mat-card-header>
+        </mat-card>
+    </mat-card-footer>
+
+    
+</mat-card>

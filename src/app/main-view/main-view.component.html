@@ -1,5 +1,5 @@
 <div class = "card-container">
-    <mat-card *ngFor="let movie of movies; let i=index" class="movie-card">
+    <mat-card *ngFor="let movie of currentMovies; let i=index" class="movie-card">
         <mat-card-header style="margin: 0 auto">
             <mat-card-title
                 style = "
@@ -49,9 +49,11 @@
             >
                 Synopsis
             </button>
-            <mat-icon>
-                favorite_border
-            </mat-icon>
+            <button
+                mat-icon-button (click)="toggleFavorite(movie)"
+            >
+                <mat-icon> {{isFavorite(movie)? 'favorite' : 'favorite_border'}}</mat-icon>
+            </button>
         </mat-card-actions>
     </mat-card>
 </div>

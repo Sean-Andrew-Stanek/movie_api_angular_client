@@ -1,5 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DataService } from '../data.service';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-movie-card',
@@ -8,8 +10,32 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class MovieCardComponent {
 
-    constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
+    movie: any;
+    similarMovies: any[];
 
-    movie = this.data.movie;
+    constructor(
+        @Inject(MAT_DIALOG_DATA) public data: any,
+        private dataService: DataService,
+        private dialog: MatDialog,
+        private dialogRef: MatDialogRef<MovieCardComponent>,
+    ) {
+        this.movie = this.data.movie;
+        this.similarMovies = dataService.filteredMovies('genre', this.movie.genre.name).slice(0,5);
+        console.log(this.similarMovies);
+    }
+
+    openMovieCardDialog(movie: any): void {
+        this.dialog.open(MovieCardComponent, {
+            width: "80%",
+            height: "80%",
+            data: {movie}
+        });
+        this.dialogRef.close();
+    }
+
+
+    
+
+    
 
 }

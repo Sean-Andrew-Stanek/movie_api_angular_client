@@ -1,9 +1,14 @@
+
+//Angular
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
+import { DatePipe } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-//Material
+//Angular - Material
 import { MatInputModule }  from '@angular/material/input';
 import { MatButtonModule, MatIconAnchor } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -11,12 +16,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
-import { FormsModule } from '@angular/forms';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatMenuModule } from '@angular/material/menu';
 
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-
-import { DatePipe } from '@angular/common';
-
+//Local
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserRegistrationFormComponent } from './user-registration-form/user-registration-form.component';
@@ -27,6 +31,8 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { MainViewComponent } from './main-view/main-view.component';
 import { DirectorCardComponent } from './director-card/director-card.component';
 import { GenreCardComponent } from './genre-card/genre-card.component';
+import { ProfileViewComponent } from './profile-view/profile-view.component';
+
 
 const appRoutes: Routes = [
     { path: 'welcome', component: WelcomePageComponent},
@@ -44,7 +50,8 @@ const appRoutes: Routes = [
     NavBarComponent,
     MainViewComponent,
     DirectorCardComponent,
-    GenreCardComponent
+    GenreCardComponent,
+    ProfileViewComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +67,10 @@ const appRoutes: Routes = [
     MatSnackBarModule,
     MatIconModule,
     RouterModule.forRoot(appRoutes),
+    MatMenuModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
