@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable} from '@angular/core';
 import { FetchApiDataService } from './fetch-api-data.service';
+import{ BehaviorSubject, Observable } from 'rxjs'
 
 //LATER - Add ng generate interface movie / user
 //IMPORTANT:  THIS IS INSTANCE ONLY.  ALL LOCALSTORAGE IS IN THE API 
@@ -14,8 +15,11 @@ export class DataService {
 
     private movies: any[] = [];
     private user: any = {};
-    private currentMovies: any[] = [];
+    
+    private currentMovies: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+    public currentMovies$: Observable<any[]> = this.currentMovies.asObservable();
 
+    
 
     constructor(
         private fetchApiDataService: FetchApiDataService,
@@ -37,15 +41,11 @@ export class DataService {
 
     setMovies(data: any[]): void {
         this.movies = data
-        this.currentMovies = data;
+        this.currentMovies.next(data);
     }
 
     getMovies(): any[] {
         return this.movies;
-    }
-
-    getCurrentMovies(): any[] {
-        return this.currentMovies;
     }
 
     setUser(data: any): void {
@@ -107,29 +107,20 @@ export class DataService {
             case 'favoriteMovies':
                 return movies.filter(movie => this.user.favoriteMovies.indexOf(movie._id)>=0);
             case 'navSearch':
-                console.log(value);
-                this.currentMovies = this.searchAllObjects(movies, value);
-                console.log(this.currentMovies);
-                //This return doesn't matter.  This acts as a call to the main view
-                return this.searchAllObjects(movies, value);
+                const searchValue = value.toLowerCase();
+                
+                let newFavMovies = movies.filter(movie => 
+                    movie.genre.name.toLowerCase().includes(searchValue) || 
+                    movie.director.name.toLowerCase().includes(searchValue) || 
+                    movie.title.toLowerCase().includes(searchValue)
+                );
+                this.currentMovies.next(newFavMovies);
+                //Object.assign(this.currentMovies, newFavMovies);
+                return newFavMovies;
+
         }
         return [];
     }
 
-    //Recursively look for a value in an object and the object's objects
-    private searchAllObjects(array: any[], value: string): any[] {
-        return array.filter(object => {
-            for(const key in object) {
-                if(object[key] ===value)
-                    //We found a match, no need to go farther
-                    return true;
-                //Check if the key is an object because we need to check these fields as well
-                else if (typeof object[key] === 'object')
-                    //Recursively search the next object.  The return array will be truthy if there are results
-                    return this.searchAllObjects([object[key]], value);
-            }
-            return false;
-        })
-    }
 
 }

@@ -4,17 +4,20 @@
     display: flex;
     background: black;
     color: white;
+    width: 80%;
+    flex-wrap: nowrap;
 }
 
 .movie-card {
-    flex: 1 1 auto;
+    //flex: 1 0 auto;
     margin: 10px 10px;
     background: rgba(50,75,125,.5);
     border: 5px rgba(0,0,0,.5) solid;
+    width: 25vw;
 }
 
 .movie-card img {
-    max-width: 100%;
+    max-width: 30vw;
     max-height: 100%;
     margin: auto 5px;
     border: black 5px solid;

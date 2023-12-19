@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MovieCardComponent } from '../movie-card/movie-card.component';
 import { DirectorCardComponent } from '../director-card/director-card.component';
 import { GenreCardComponent } from '../genre-card/genre-card.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-main-view',
@@ -15,9 +16,10 @@ export class MainViewComponent {
 
     movies: any[] = []
     currentMovies: any[] = [];
+    currentMoviesSubscription: Subscription = new Subscription();
 
     constructor(
-        private dataService: DataService,
+        public dataService: DataService,
         public fetchApiData: FetchApiDataService,
         private dialog: MatDialog,
     ) { }
@@ -25,12 +27,18 @@ export class MainViewComponent {
     ngOnInit(): void {
         this.login()
         this.getMovies();
-        this.currentMoviesListener();
+        this.currentMoviesSubscription = this.dataService.currentMovies$.subscribe(
+            currentMovies=> this.currentMovies = currentMovies
+        );
     }
 
-    currentMoviesListener() {
-        this.currentMovies = this.dataService.getCurrentMovies();
+    ngOnDestroy(): void {
+        this.currentMoviesSubscription.unsubscribe();
     }
+
+/*     currentMoviesListener() {
+        this.currentMovies = this.dataService.currentMovies;
+    } */
 
     toggleFavorite(movie: any) {
         const index = this.dataService.getFavoriteMovies().indexOf(movie._id);
