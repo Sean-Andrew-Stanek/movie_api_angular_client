@@ -4,7 +4,6 @@
     display: flex;
     background: black;
     color: white;
-    width: 80%;
     flex-wrap: nowrap;
 }
 
@@ -13,12 +12,13 @@
     margin: 10px 10px;
     background: rgba(50,75,125,.5);
     border: 5px rgba(0,0,0,.5) solid;
-    width: 25vw;
+    max-width: 25vw;
+    max-height: 80vh;
+    
 }
 
 .movie-card img {
     max-width: 30vw;
-    max-height: 100%;
     margin: auto 5px;
     border: black 5px solid;
     cursor: pointer;

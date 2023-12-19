@@ -57,6 +57,7 @@ export class MainViewComponent {
         this.dataService.signin();
     }
 
+
     isFavorite(movie: any): boolean {
         return this.dataService.getFavoriteMovies().indexOf(movie._id) >=0;
     }

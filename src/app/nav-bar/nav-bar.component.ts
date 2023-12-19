@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ProfileViewComponent } from '../profile-view/profile-view.component';
 import { DataService } from '../data.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-nav-bar',
@@ -11,8 +10,6 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent {
-
-    userSubscription: Subscription = new Subscription();
     searchText: string = '';
     user: any;
 
@@ -28,9 +25,6 @@ export class NavBarComponent {
     }
 
     ngOnInit() {
-        this.userSubscription = this.dataService.getUser().subscribe((user:any) => {
-            this.user = user;
-        });
     }
 
     sendMessage() {

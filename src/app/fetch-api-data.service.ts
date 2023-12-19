@@ -49,6 +49,8 @@ export class UserRegistrationService {
             map((resData: any) => {
                 if(resData.user) {
                     //Save user / token to localStorage
+                    console.log(resData.user);
+                    console.log(JSON.stringify(resData.user));
                     localStorage.setItem('user', JSON.stringify(resData.user));
                     localStorage.setItem('token', resData.token);
                     this.dataService.setUser(resData.user);

@@ -68,7 +68,6 @@ export class DataService {
         //REMOVE FROM SERVER
         this.fetchApiDataService.addFavoriteMovie(this.user._id, id).subscribe(response=>
             {
-                console.log('Added Favorite');
                 //UPDATE USER
                 this.user = response;
                 localStorage.setItem('user', response);
@@ -86,7 +85,6 @@ export class DataService {
         //REMOVE FROM SERVER
         this.fetchApiDataService.deleteFavoriteMovie(this.user._id, id).subscribe(response=>
             {
-                console.log('Deleted Favorite');
                 //UPDATE USER
                 this.user = response;
                 localStorage.setItem('user', response);
@@ -115,7 +113,6 @@ export class DataService {
                     movie.title.toLowerCase().includes(searchValue)
                 );
                 this.currentMovies.next(newFavMovies);
-                //Object.assign(this.currentMovies, newFavMovies);
                 return newFavMovies;
 
         }
