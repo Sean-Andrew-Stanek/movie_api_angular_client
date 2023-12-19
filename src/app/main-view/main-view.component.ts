@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service'
 import { DataService } from '../data.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './main-view.component.html',
   styleUrl: './main-view.component.scss'
 })
-export class MainViewComponent {
+export class MainViewComponent implements OnInit, OnDestroy{
 
     movies: any[] = []
     currentMovies: any[] = [];

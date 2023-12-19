@@ -41,7 +41,8 @@
               "@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "baseHref": "/movie_api_angular_client"
           },
           "configurations": {
             "production": {
@@ -104,11 +105,23 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
   "cli": {
-    "analytics": "da12b80f-5439-48c1-95ec-289bbb5bff62"
+    "analytics": "da12b80f-5439-48c1-95ec-289bbb5bff62",
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }

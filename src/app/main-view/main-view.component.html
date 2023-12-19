@@ -19,7 +19,10 @@
         <img 
             class="movie-image"
             src={{movie.image}}
+            alt={{movie.title}}
             (click)="openMovieCardDialog(movie)"
+            (keydown.enter)="openMovieCardDialog(movie)"
+            tabindex=i
         />
         
         <mat-card-actions

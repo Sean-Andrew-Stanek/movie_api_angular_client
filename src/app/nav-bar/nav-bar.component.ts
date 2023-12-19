@@ -24,9 +24,6 @@ export class NavBarComponent {
         return this.dataService.getUser() !== null && Object.keys(this.dataService.getUser()).length > 0;
     }
 
-    ngOnInit() {
-    }
-
     sendMessage() {
         this.dataService.filteredMovies('navSearch', this.searchText);
     }

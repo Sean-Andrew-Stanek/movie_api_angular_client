@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
-import { Observable, of, throwError } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import mockdata from './mockdata';
 import { DataService } from './data.service';
@@ -222,7 +222,6 @@ export class FetchApiDataService {
             }
         }
         public deleteFavoriteMovie (userID: string, movieID: string): Observable<any> {
-            const token = localStorage.getItem('token');
             return this.http.delete(
                 apiURL+'users/'+userID+'/movies/'+movieID,
                 {headers: this.tokenHeader()}
