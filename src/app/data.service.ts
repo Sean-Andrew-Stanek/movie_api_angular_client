@@ -105,15 +105,18 @@ export class DataService {
             case 'favoriteMovies':
                 return movies.filter(movie => this.user.favoriteMovies.indexOf(movie._id)>=0);
             case 'navSearch':
-                const searchValue = value.toLowerCase();
+            {    const searchValue = value.toLowerCase();
                 
-                let newFavMovies = movies.filter(movie => 
+                const newFavMovies = movies.filter(movie => 
                     movie.genre.name.toLowerCase().includes(searchValue) || 
                     movie.director.name.toLowerCase().includes(searchValue) || 
                     movie.title.toLowerCase().includes(searchValue)
                 );
                 this.currentMovies.next(newFavMovies);
                 return newFavMovies;
+            }
+            default:
+                break;
 
         }
         return [];

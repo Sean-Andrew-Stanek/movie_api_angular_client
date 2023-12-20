@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 //Closes the dialogue on success
 import { MatDialogRef } from '@angular/material/dialog';
@@ -13,7 +13,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './user-registration-form.component.html',
   styleUrl: './user-registration-form.component.scss'
 })
-export class UserRegistrationFormComponent implements OnInit{
+export class UserRegistrationFormComponent {
     @Input() userData = { username: '', password: '', email: '', birthday: ''}
 
     constructor(
@@ -21,8 +21,6 @@ export class UserRegistrationFormComponent implements OnInit{
         public dialogRef: MatDialogRef<UserRegistrationFormComponent>,
         public snackBar: MatSnackBar
     ){}
-    
-    ngOnInit(): void {}
 
     //Sends form info to backend
     registerUser():void {

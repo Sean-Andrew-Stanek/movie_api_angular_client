@@ -51,6 +51,8 @@
                         src={{movie.image}}
                         alt="{{movie.title}}"
                         (click)="openMovieCardDialog(movie)"
+                        (keydown)="openMovieCardDialog(movie)"
+                        tabindex = i
                     />
                 </div> 
                 <mat-card-header style="margin: 0 auto">

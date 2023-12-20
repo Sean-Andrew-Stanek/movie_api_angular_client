@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 //Closes the dialogue on success
 import { MatDialogRef } from '@angular/material/dialog';
@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
   templateUrl: './user-login-form.component.html',
   styleUrl: './user-login-form.component.scss'
 })
-export class UserLoginFormComponent implements OnInit{
+export class UserLoginFormComponent {
     @Input() userData = { username: '', password: ''}
 
     constructor(
@@ -22,13 +22,12 @@ export class UserLoginFormComponent implements OnInit{
         public snackBar: MatSnackBar,
         private router: Router,
     ){}
-    
-    ngOnInit(): void {}
 
     //Sends form info to backend
     loginUser():void {
         this.userRegistrationAPI.userLogin(this.userData).subscribe((result) => {
             this.dialogRef.close();
+            result;
             this.snackBar.open('Logged In!  Welcome!', 'OK', {
                 duration: 2000
             });
