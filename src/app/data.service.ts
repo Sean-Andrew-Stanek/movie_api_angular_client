@@ -34,6 +34,10 @@ export class DataService {
             this.user = JSON.parse(userString);
     }
 
+    hasUser(): boolean {
+        return Object.keys(this.user).length > 0;
+    }
+
     signout(): void {
         this.user = {};
         localStorage.clear();

@@ -6,6 +6,7 @@ import { MovieCardComponent } from '../movie-card/movie-card.component';
 import { DirectorCardComponent } from '../director-card/director-card.component';
 import { GenreCardComponent } from '../genre-card/genre-card.component';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-view',
@@ -21,11 +22,16 @@ export class MainViewComponent implements OnInit, OnDestroy{
     constructor(
         public dataService: DataService,
         public fetchApiData: FetchApiDataService,
+        private router: Router,
         private dialog: MatDialog,
     ) { }
 
     ngOnInit(): void {
-        this.login()
+        this.dataService.signin();
+        
+        if(this.dataService.hasUser())
+            this.router.navigate(['welcome']);
+
         this.getMovies();
         this.currentMoviesSubscription = this.dataService.currentMovies$.subscribe(
             currentMovies=> this.currentMovies = currentMovies
@@ -49,12 +55,6 @@ export class MainViewComponent implements OnInit, OnDestroy{
         }else{
             this.dataService.addFavoriteMovie(movie._id);
         }
-    }
-
-    //Attempts to login
-    //TODO:  Send to login if fail
-    login(){
-        this.dataService.signin();
     }
 
 
