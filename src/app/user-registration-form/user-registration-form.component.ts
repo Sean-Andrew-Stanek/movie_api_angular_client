@@ -24,13 +24,13 @@ export class UserRegistrationFormComponent {
 
     //Sends form info to backend
     registerUser():void {
-        this.userRegistrationAPI.userRegistration(this.userData).subscribe((result) => {
+        this.userRegistrationAPI.userRegistration(this.userData).subscribe(() => {
             this.dialogRef.close();
-            this.snackBar.open(result, 'OK', {
+            this.snackBar.open('Signed Up!  Welcome!', 'OK', {
                 duration: 2000
             });
-        }, (result) => {
-            this.snackBar.open(result, 'OK', {
+        }, () => {
+            this.snackBar.open('Sign Up Failed', 'OK', {
                 duration: 2000
             });
         });

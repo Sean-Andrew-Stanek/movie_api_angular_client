@@ -28,8 +28,8 @@ export class MainViewComponent implements OnInit, OnDestroy{
 
     ngOnInit(): void {
         this.dataService.signin();
-        
-        if(this.dataService.hasUser())
+
+        if(!this.dataService.hasUser())
             this.router.navigate(['welcome']);
 
         this.getMovies();

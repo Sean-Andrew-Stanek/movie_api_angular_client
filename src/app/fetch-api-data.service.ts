@@ -49,13 +49,9 @@ export class UserRegistrationService {
             map((resData: any) => {
                 if(resData.user) {
                     //Save user / token to localStorage
-                    console.log(resData.user);
-                    console.log(JSON.stringify(resData.user));
                     localStorage.setItem('user', JSON.stringify(resData.user));
                     localStorage.setItem('token', resData.token);
                     this.dataService.setUser(resData.user);
-                    //log to console
-                    console.log(`Successfully logged in as ${resData.user.username}`);
                     
                     return JSON.stringify(resData.user);
                 } else {
@@ -111,7 +107,7 @@ export class UserRegistrationService {
   })
 export class FetchApiDataService {
 
-    public isTesting = true;
+    public isTesting = false;
     constructor(private http: HttpClient) {}
 
     private tokenHeader(): HttpHeaders {

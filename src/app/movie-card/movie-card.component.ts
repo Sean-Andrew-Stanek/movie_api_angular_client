@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject,  } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DataService } from '../data.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
@@ -21,7 +21,6 @@ export class MovieCardComponent {
     ) {
         this.movie = this.data.movie;
         this.similarMovies = dataService.filteredMovies('genre', this.movie.genre.name).slice(0,5);
-        console.log(this.similarMovies);
     }
 
     openMovieCardDialog(movie: any): void {

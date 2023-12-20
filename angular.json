@@ -42,7 +42,7 @@
               "src/styles.scss"
             ],
             "scripts": [],
-            "baseHref": ""
+            "baseHref": "/movie_api_angular_client/"
           },
           "configurations": {
             "production": {

@@ -21,7 +21,6 @@ export class WelcomePageComponent implements OnInit{
 
     ngOnInit(): void {
         this.dataService.signin();
-        console.log(this.dataService.getUser());
         if(this.dataService.hasUser())
             this.router.navigate(['movies']);
     }
