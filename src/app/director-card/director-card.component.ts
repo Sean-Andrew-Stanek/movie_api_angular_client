@@ -10,7 +10,7 @@ import { MovieCardComponent } from '../movie-card/movie-card.component';
   templateUrl: './director-card.component.html',
   styleUrls: ['../movie-card/movie-card.component.scss']
 })
-export class DirectorCardComponent {
+export class DirectorCardComponent implements OnInit {
     
     director: any;
     similarMovies: any[];
