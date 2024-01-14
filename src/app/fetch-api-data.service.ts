@@ -7,7 +7,7 @@ import mockdata from './mockdata';
 import { DataService } from './data.service';
 
 //API source
-const apiURL = 'https://my-movie-db-1195f41cc20f.herokuapp.com/'
+const apiURL = 'http://107.23.188.207/'
 
 /**
  * @description Service for user registration operations.
